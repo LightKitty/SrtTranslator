@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnOpen = new System.Windows.Forms.Button();
             this.textBoxResult = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -46,30 +46,19 @@
             // 
             // textBoxResult
             // 
-            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxResult.Location = new System.Drawing.Point(12, 41);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxResult.Size = new System.Drawing.Size(618, 628);
+            this.textBoxResult.Size = new System.Drawing.Size(680, 628);
             this.textBoxResult.TabIndex = 1;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(636, 41);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(616, 628);
-            this.textBox1.TabIndex = 2;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(636, 12);
+            this.btnSave.Location = new System.Drawing.Point(93, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -81,16 +70,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(704, 681);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBoxResult);
             this.Controls.Add(this.btnOpen);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "字幕翻译助手";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,7 +89,6 @@
 
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.TextBox textBoxResult;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnSave;
     }
 }

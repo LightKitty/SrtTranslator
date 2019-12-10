@@ -7,7 +7,13 @@ namespace SrtTranslator
     public class Srt
     {
         private List<SrtPart> setParts;
+        public string[] TranslateTexts { get; set; } //翻译后的文本列表
+        public string[] RawTexts { get; set; } //原始文本列表
 
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="path"></param>
         public Srt(string path)
         {
             setParts = new List<SrtPart>();
@@ -38,6 +44,11 @@ namespace SrtTranslator
             sr.Close();
         }
 
+        /// <summary>
+        /// 访问器
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public SrtPart this[int id]
         {
             get
@@ -50,6 +61,10 @@ namespace SrtTranslator
             }
         }
 
+        /// <summary>
+        /// 获取所有字幕，拼成字符串
+        /// </summary>
+        /// <returns></returns>
         internal string GetAllSubtitle()
         {
             string result = string.Empty;
@@ -63,12 +78,59 @@ namespace SrtTranslator
             return result.Trim().Replace("  ", " "); //替换双空格 去除头尾空格
         }
 
+        /// <summary>
+        /// 字幕条数
+        /// </summary>
+        /// <returns></returns>
         public int Count()
         {
             return setParts.Count();
         }
+
+        /// <summary>
+        /// 设置每一条字幕的翻译
+        /// </summary>
+        public void SetTranslateText()
+        {
+            SetTranslateText(TranslateTexts);
+        }
+
+        /// <summary>
+        /// 设置每一条字幕的翻译
+        /// </summary>
+        /// <param name="translateTexts"></param>
+        public void SetTranslateText(string[] translateTexts)
+        {
+            //寻找每条翻译字幕合适的位置赋值
+            int insertId = 0;
+            int tId = 0;
+            for (int i = 0; i < setParts.Count(); i++)
+            {
+                if (setParts[i].Subtitles.Any(x => x.Contains(".")) && tId < translateTexts.Length)
+                {
+                    setParts[insertId].TranslateText = new List<string>() { translateTexts[tId] };
+                    if (setParts[i].Subtitles.Any(x => x.EndsWith(".")))
+                        insertId = i + 1;
+                    else
+                        insertId = i;
+                    tId++;
+                }
+            }
+
+            //剩余的翻译字幕添加到最后
+            if(translateTexts.Length -1 > tId)
+            {
+                for(int i= tId; i< translateTexts.Length; i++)
+                {
+                    setParts.Last().TranslateText.Add(translateTexts[i]);
+                }
+            }
+        }
     }
 
+    /// <summary>
+    /// 每一条字幕，包含序号、时间、字幕、翻译
+    /// </summary>
     public class SrtPart
     {
         public string Index { get; set; }
