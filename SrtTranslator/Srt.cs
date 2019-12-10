@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 namespace SrtTranslator
 {
+    /// <summary>
+    /// srt model
+    /// </summary>
     public class Srt
     {
         private List<SrtPart> setParts;
