@@ -8,9 +8,9 @@ namespace SrtTranslator
 {
     public partial class MainForm : Form
     {
-        Srt srt;
-        string dir;
-        string fileName;
+        Srt srt; //srt文件
+        string dir; //srt文件夹
+        string fileName; //srt文件名
         public MainForm()
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace SrtTranslator
         private void btnOpen_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
+            ofd.RestoreDirectory = true;
             ofd.Filter = "字幕文件（*.srt）|*.srt|全部文件（*.*）|*.*";
             if (ofd.ShowDialog()==DialogResult.OK)
             {
@@ -47,7 +48,6 @@ namespace SrtTranslator
             srt.TranslateTexts = translateText.Split('。'); //以句号分隔字符串
             srt.SetTranslateText(); //设置srt每条字幕的翻译
             ResetTextBoxResult(); //重新更新TextBox
-            
         }
 
         /// <summary>
