@@ -26,6 +26,7 @@ namespace SrtTranslator
                 string filePath = ofd.FileName;
                 Srt srt = new Srt(filePath);
                 string subtitleAll = srt.GetAllSubtitle();
+                textBoxOri.Text = subtitleAll;
                 string translateText = YouDaoTranslator.Translate(subtitleAll); //Translater.Translate(subtitleAll);
                 textBoxResult.Text = translateText.Replace("。", Environment.NewLine);
                 string[] translateTexts = translateText.Split('。');
@@ -43,15 +44,17 @@ namespace SrtTranslator
                         tId++;
                     }
                 }
-                textBox1.Clear();
+
+                StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < srt.Count(); i++)
                 {
-                    textBox1.AppendText(srt[i].Index + Environment.NewLine);
-                    textBox1.AppendText(srt[i].Time + Environment.NewLine);
-                    textBox1.AppendText(String.Join(Environment.NewLine, srt[i].Subtitles.ToArray()) + Environment.NewLine);
-                    if (srt[i].TranslateText?.Count > 0) textBox1.AppendText(String.Join(Environment.NewLine, srt[i].TranslateText.ToArray()) + Environment.NewLine);
-                    textBox1.AppendText(Environment.NewLine);
+                    sb.AppendLine(srt[i].Index);
+                    sb.AppendLine(srt[i].Time);
+                    sb.Append(string.Join(Environment.NewLine, srt[i].Subtitles.ToArray()) + Environment.NewLine);
+                    if (srt[i].TranslateText?.Count > 0) sb.Append(string.Join(Environment.NewLine, srt[i].TranslateText.ToArray()) + Environment.NewLine);
+                    sb.AppendLine();
                 }
+                textBox1.Text = sb.ToString();
             }
         }
 

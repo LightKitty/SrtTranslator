@@ -32,6 +32,7 @@
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.textBoxOri = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -48,11 +49,11 @@
             // 
             this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBoxResult.Location = new System.Drawing.Point(12, 41);
+            this.textBoxResult.Location = new System.Drawing.Point(12, 359);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxResult.Size = new System.Drawing.Size(618, 628);
+            this.textBoxResult.Size = new System.Drawing.Size(618, 310);
             this.textBoxResult.TabIndex = 1;
             // 
             // textBox1
@@ -77,11 +78,21 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // textBoxOri
+            // 
+            this.textBoxOri.Location = new System.Drawing.Point(12, 41);
+            this.textBoxOri.Multiline = true;
+            this.textBoxOri.Name = "textBoxOri";
+            this.textBoxOri.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxOri.Size = new System.Drawing.Size(618, 310);
+            this.textBoxOri.TabIndex = 4;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.textBoxOri);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBoxResult);
@@ -90,7 +101,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "SrtTranslator";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -102,6 +113,7 @@
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox textBoxOri;
     }
 }
 
