@@ -95,7 +95,7 @@ namespace SrtTranslator
         /// </summary>
         public void SetTranslateText()
         {
-            SetTranslateText(TranslateTexts);
+            SetTranslateTextV2(TranslateTexts);
         }
 
         /// <summary>
@@ -137,6 +137,65 @@ namespace SrtTranslator
                 }
             }
         }
+
+        public void SetTranslateTextV2(string[] translateTexts)
+        {
+            bool lineEnd = true;
+            int tId = 0;
+            if (tId >= translateTexts.Length) return;
+            for (int i = 0; i < setParts.Count(); i++)
+            {
+                for (int j = 0; j < setParts[i].Subtitles.Count; j++)
+                {
+                    string s = setParts[i].Subtitles[j];
+                    if (lineEnd && !string.IsNullOrWhiteSpace(s))
+                    { //新行
+                        setParts[i].TranslateText.Add(translateTexts[tId]);
+                        tId++;
+                        if (tId >= translateTexts.Length) return;
+                        lineEnd = false;
+                    }
+
+                    for (int k = 0; k< s.Length;k++)
+                    {
+                        char c = s[k];
+                        if(c == '.')
+                        {
+                            if(k == s.Length-1||k==s.Length-2&&s[k+1]==' ')
+                            {
+                                lineEnd = true;
+                            }
+                            else if(s[k + 1] == ' ' && IsCapital(s[k + 2]))
+                            {
+                                setParts[i].TranslateText.Add(translateTexts[tId]);
+                                tId++;
+                                if (tId >= translateTexts.Length) return;
+                                lineEnd = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// 判断字符是否为大写字母
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>        
+        private bool IsCapital(char c)
+        {
+            if (c > 'A' && c < 'Z')
+
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 
     /// <summary>

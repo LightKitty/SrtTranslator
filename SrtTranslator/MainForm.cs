@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace SrtTranslator
@@ -43,10 +44,12 @@ namespace SrtTranslator
         {
             srt = new Srt(filePath); //生成字幕文件
             string subtitleAll = srt.GetAllSubtitle(); //获取所有字幕，拼成一个string
+            textBoxOriginal.Text = subtitleAll;
             //srt.RawTexts = subtitleAll.Split('.');
             string translateText = YouDaoTranslator.Translate(subtitleAll); //获取翻译结果
-            srt.TranslateTexts = translateText.Split('。'); //以句号分隔字符串
-            srt.SetTranslateText(); //设置srt每条字幕的翻译
+            textBoxTranslate.Text = translateText;
+            //srt.TranslateTexts = translateText.Split('。'); //以句号分隔字符串
+            //srt.SetTranslateText(); //设置srt每条字幕的翻译
             ResetTextBoxResult(); //重新更新TextBox
         }
 
@@ -93,6 +96,46 @@ namespace SrtTranslator
                 sw.Close();
                 MessageBox.Show("保存成功", "提示");
             }
+        }
+
+        private void buttonFormat_Click(object sender, EventArgs e)
+        {
+            string resultText = textBoxResult.Text;
+            textBoxResult.Text = ReplaceChineseSymbol(resultText);
+        }
+
+        /// <summary>
+        /// 替换所有的中文及标点符号
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        string ReplaceChineseSymbol(string str, string replacement = " ")
+        {
+            var placeStr = Regex.Replace(str, @"[，。；？~！：‘“”’【】（）]", " ");
+            //placeStr = Regex.Replace(placeStr, @"([\u4e00-\u9fa5])", "");
+            return placeStr;
+        }
+
+        /// <summary>
+        /// 全角转半角
+        /// 全角空格为12288，半角空格为32
+        /// 其他字符半角(33-126)与全角(65281-65374)的对应关系是：均相差65248
+        /// </summary>
+        /// <param name="input">输入包含全角字符的字符串</param>
+        /// <returns>返回半角字符串</returns>
+        public string ToDBC(string input)
+        {
+            char[] c = input.ToCharArray();
+            for (int i = 0; i < c.Length; i++)
+            {
+                if (c[i] == 12288)
+                {
+                    c[i] = (char)32; continue;
+                }
+                if (c[i] > 65280 && c[i] < 65375)
+                    c[i] = (char)(c[i] - 65248);
+            }
+            return new string(c);
         }
     }
 }

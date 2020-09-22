@@ -32,6 +32,9 @@
             this.btnOpen = new System.Windows.Forms.Button();
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.textBoxOriginal = new System.Windows.Forms.TextBox();
+            this.textBoxTranslate = new System.Windows.Forms.TextBox();
+            this.buttonFormat = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -46,19 +49,19 @@
             // 
             // textBoxResult
             // 
-            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxResult.Location = new System.Drawing.Point(12, 41);
+            this.textBoxResult.Location = new System.Drawing.Point(637, 41);
             this.textBoxResult.Multiline = true;
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxResult.Size = new System.Drawing.Size(680, 628);
+            this.textBoxResult.Size = new System.Drawing.Size(615, 628);
             this.textBoxResult.TabIndex = 1;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(93, 12);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(718, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -66,11 +69,48 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // textBoxOriginal
+            // 
+            this.textBoxOriginal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxOriginal.Location = new System.Drawing.Point(12, 41);
+            this.textBoxOriginal.Multiline = true;
+            this.textBoxOriginal.Name = "textBoxOriginal";
+            this.textBoxOriginal.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxOriginal.Size = new System.Drawing.Size(615, 310);
+            this.textBoxOriginal.TabIndex = 4;
+            // 
+            // textBoxTranslate
+            // 
+            this.textBoxTranslate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxTranslate.Location = new System.Drawing.Point(12, 359);
+            this.textBoxTranslate.Multiline = true;
+            this.textBoxTranslate.Name = "textBoxTranslate";
+            this.textBoxTranslate.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxTranslate.Size = new System.Drawing.Size(615, 310);
+            this.textBoxTranslate.TabIndex = 5;
+            // 
+            // buttonFormat
+            // 
+            this.buttonFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFormat.Location = new System.Drawing.Point(637, 12);
+            this.buttonFormat.Name = "buttonFormat";
+            this.buttonFormat.Size = new System.Drawing.Size(75, 23);
+            this.buttonFormat.TabIndex = 6;
+            this.buttonFormat.Text = "格式";
+            this.buttonFormat.UseVisualStyleBackColor = true;
+            this.buttonFormat.Click += new System.EventHandler(this.buttonFormat_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.buttonFormat);
+            this.Controls.Add(this.textBoxTranslate);
+            this.Controls.Add(this.textBoxOriginal);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.textBoxResult);
             this.Controls.Add(this.btnOpen);
@@ -90,6 +130,9 @@
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.TextBox textBoxOriginal;
+        private System.Windows.Forms.TextBox textBoxTranslate;
+        private System.Windows.Forms.Button buttonFormat;
     }
 }
 
