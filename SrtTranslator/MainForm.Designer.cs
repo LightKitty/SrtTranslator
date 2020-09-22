@@ -35,6 +35,7 @@
             this.textBoxOriginal = new System.Windows.Forms.TextBox();
             this.textBoxTranslate = new System.Windows.Forms.TextBox();
             this.buttonFormat = new System.Windows.Forms.Button();
+            this.buttonOpenResult = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpen
@@ -57,11 +58,12 @@
             this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxResult.Size = new System.Drawing.Size(615, 628);
             this.textBoxResult.TabIndex = 1;
+            this.textBoxResult.TextChanged += new System.EventHandler(this.textBoxResult_TextChanged);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(718, 12);
+            this.btnSave.Location = new System.Drawing.Point(799, 12);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -95,7 +97,7 @@
             // buttonFormat
             // 
             this.buttonFormat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonFormat.Location = new System.Drawing.Point(637, 12);
+            this.buttonFormat.Location = new System.Drawing.Point(718, 12);
             this.buttonFormat.Name = "buttonFormat";
             this.buttonFormat.Size = new System.Drawing.Size(75, 23);
             this.buttonFormat.TabIndex = 6;
@@ -103,11 +105,23 @@
             this.buttonFormat.UseVisualStyleBackColor = true;
             this.buttonFormat.Click += new System.EventHandler(this.buttonFormat_Click);
             // 
+            // buttonOpenResult
+            // 
+            this.buttonOpenResult.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpenResult.Location = new System.Drawing.Point(637, 12);
+            this.buttonOpenResult.Name = "buttonOpenResult";
+            this.buttonOpenResult.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenResult.TabIndex = 7;
+            this.buttonOpenResult.Text = "打开";
+            this.buttonOpenResult.UseVisualStyleBackColor = true;
+            this.buttonOpenResult.Click += new System.EventHandler(this.buttonOpenResult_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.buttonOpenResult);
             this.Controls.Add(this.buttonFormat);
             this.Controls.Add(this.textBoxTranslate);
             this.Controls.Add(this.textBoxOriginal);
@@ -120,6 +134,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "字幕翻译助手";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,6 +148,7 @@
         private System.Windows.Forms.TextBox textBoxOriginal;
         private System.Windows.Forms.TextBox textBoxTranslate;
         private System.Windows.Forms.Button buttonFormat;
+        private System.Windows.Forms.Button buttonOpenResult;
     }
 }
 

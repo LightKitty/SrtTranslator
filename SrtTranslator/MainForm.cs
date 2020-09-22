@@ -9,6 +9,7 @@ namespace SrtTranslator
 {
     public partial class MainForm : Form
     {
+        bool isSave = false; //是否已经保存
         Srt srt; //srt文件
         string dir; //srt文件夹
         string fileName; //srt文件名
@@ -94,6 +95,7 @@ namespace SrtTranslator
                 StreamWriter sw = new StreamWriter(filePath, false, Encoding.UTF8);
                 sw.Write(textBoxResult.Text);
                 sw.Close();
+                isSave = true;
                 MessageBox.Show("保存成功", "提示");
             }
         }
@@ -136,6 +138,34 @@ namespace SrtTranslator
                     c[i] = (char)(c[i] - 65248);
             }
             return new string(c);
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBoxResult.Text) && !isSave && MessageBox.Show("修改内容未保存，确定退出？", "提示", MessageBoxButtons.YesNoCancel,MessageBoxIcon.Information) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void textBoxResult_TextChanged(object sender, EventArgs e)
+        {
+            isSave = false;
+        }
+
+        private void buttonOpenResult_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.RestoreDirectory = true;
+            ofd.Filter = "字幕文件（*.srt）|*.srt|全部文件（*.*）|*.*";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = ofd.FileName; //文件路径
+                using (StreamReader sr = new StreamReader(filePath, Encoding.UTF8))
+                {
+                    textBoxResult.Text = sr.ReadToEnd();
+                }
+            }
         }
     }
 }
