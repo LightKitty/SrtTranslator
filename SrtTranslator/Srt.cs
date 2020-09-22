@@ -112,20 +112,28 @@ namespace SrtTranslator
                 if (setParts[i].Subtitles.Any(x => x.Contains(".")) && tId < translateTexts.Length)
                 {
                     setParts[insertId].TranslateText = new List<string>() { translateTexts[tId] };
-                    if (setParts[i].Subtitles.Any(x => x.EndsWith(".")))
+                    tId++;
+                    for (int j = 0; j < setParts[i].Subtitles.Count - 1; j++)
+                    {
+                        if (setParts[i].Subtitles[j].TrimEnd().EndsWith("."))
+                        {
+                            insertId = i;
+                            setParts[insertId].TranslateText.Add(translateTexts[tId]);
+                            tId++;
+                        }
+
+                    }
+
+                    if (setParts[i].Subtitles.Last().TrimEnd().EndsWith("."))
+                    {
                         insertId = i + 1;
+                    }
                     else
                         insertId = i;
-                    tId++;
                 }
-            }
-
-            //剩余的翻译字幕添加到最后
-            if(translateTexts.Length -1 > tId)
-            {
-                for(int i= tId; i< translateTexts.Length; i++)
+                else if (setParts[i].Subtitles.All(x => string.IsNullOrWhiteSpace(x)))
                 {
-                    setParts.Last().TranslateText.Add(translateTexts[i]);
+                    insertId++;
                 }
             }
         }
@@ -139,7 +147,7 @@ namespace SrtTranslator
         public string Index { get; set; }
         public string Time { get; set; }
         public List<string> Subtitles { get; set; }
-        public List<string> TranslateText { get; set; }
+        public List<string> TranslateText { get; set; } = new List<string>();
 
         public bool IsComplate()
         {
